@@ -1,0 +1,37 @@
+#chart {
+    max-width: 650px;
+    margin: 35px auto;
+}
+
+:root {
+    --hue:223;
+    --bg: hsl(var(--hue),10%,100%);
+    --fg: hsl(var(--hue),10%,0%);
+    --primary: hsl(var(--hue),90%,55%);
+    --primaryT: hsla(var(--hue),90%,55%,0);
+    --transDur: 0.3;
+    font-size: calc(16px + (32 - 16) * (100vw - 320px) / (1280 - 320));
+
+}
+
+html,
+body {
+    background-color: var(--bg);
+}
+
+body,
+input {
+    font: lem/1.5 Fredoka, sans-serif;
+}
+body {
+    color: var(--fg);
+    height: 100vh;
+    display: grid;
+    place-items: center;
+}
+
+.theme {
+    display: flex;
+    align-items: center;
+    -webkit-tap-highlight-color: transparent;
+}
