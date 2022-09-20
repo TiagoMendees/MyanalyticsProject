@@ -1,3 +1,21 @@
+<?php
+
+    session_start();
+    if(isset($_SESSION["numlogin"])) {
+        $n1=$_GET["num"];
+        $n2=$_SESSION["numlogin"];
+        $ret=_SESSION["dados"];
+        if($n1!=$n2) {
+            echo "<p>You do not have access to this page! Incomplete Login.</p>";
+            exit;
+        }
+    } else {
+        echo "<p>You do not have access to this page! Incomplete Login.</p>";
+        exit;  
+    }
+
+?>
+
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
@@ -25,7 +43,45 @@
         <script
             src="https://cdn.jsdelivr.net/npm/apexcharts">
         </script>
-        <script src="app.js"></script>
+        <script>
+
+            var info = "<?php print $ret['valores']; ?>";
+
+            var options = {
+            chart: { height: 500, type: "area", width: 1200,},
+            dataLabels: { enable:false },
+            series: [{ name: "Money", data: info }],
+            fill: {
+                type: "gradient",
+                gradient: {
+                    shadeIntensity: 4,
+                    opacityFrom: 0.7,
+                    opacityTo: 0.9,
+                    stops: [0, 90, 100],
+                },
+            },
+
+            xaxis: {
+                categories: [
+                    "01 Jan",
+                    "02 Feb",
+                    "03 March",
+                    "04 April",
+                    "05 May",
+                    "06 June",
+                    "07 July",
+                    "08 Aug",
+                    "09 Sept",
+                    "10 Oct",
+                    "11 Nov",
+                    "12 Dec",
+                ],
+            },
+            };
+
+            var chart = new ApexCharts(document.querySelector("#chart"),options);
+            chart.render();
+        </script>
     </body>
 
 </html>

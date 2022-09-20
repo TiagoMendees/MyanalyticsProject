@@ -10,16 +10,66 @@
 
 <body>
 	<section class="login">
+
+	<?php
+
+		include "connection.inc";
+
+		if($con) {
+			echo "<p>true</p>";
+		} else {
+			echo "<p>false</p>";
+		}
+
+		if(isset($_POST["f_logar"])) {
+			$user=$_POST["f_user"];
+			$senha=$_POST["f_senha"];
+
+			$sql="SELECT * FROM tb_projetos WHERE projectname='$user' AND password='$senha'";
+			$res=mysqli_query($con,$sql);
+			$ret=mysqli_fetch_array($res);
+
+			if($ret == 0) {
+				echo "<p id='lgErro'>Login Incorreto</p>";
+			} else {
+				if($ret) {
+					echo "<p>true</p>";
+				} else {
+					echo "<p>false</p>";
+				}
+
+				echo "DADOS: ".$ret['valores']."<br>";
+				
+				$chave1="abcdefghiofdnwikfsj";
+				$chave2="ABSJNEOWFNEWOFJHWFJ";
+				$chave3="1234567890";
+				$chave=str_shuffle($chave1.$chave2.$chave3);
+				$tam=strlen($chave);
+				$num="";
+				$qtde=rand(100,200);
+				for($i=0;$i<$qtde;$i++) {
+					$pos=rand(0,$tam);
+					$num.=substr($chave,$pos,1);
+				}
+				session_start();
+				$_SESSION['numlogin']=$num;
+				$_SESSION['username']=$user;
+				$_SESSION['dados']=$ret;
+				header("Location:project.php?num=$num");
+				
+			}
+			mysqli_close($con);
+		}
+	?>
+
 		<div class="login_box">
 			<div class="left">
 				<div class="contact">
-					<form action="">
+					<form action="index.php" method="post">
 						<h3>SIGN IN</h3>
-						<input type="text" placeholder="PROJECT NAME">
-						<input type="text" placeholder="PASSWORD">
-						<button class="submit">
-							<a id="ButtonSumitA" href="project.php" target="_self">LET'S GO</a>
-						</button>
+						<input type="text" name="f_user" placeholder="PROJECT NAME">
+						<input type="password" name="f_senha" placeholder="PASSWORD">
+						<button class="submit" type="submit" name="f_logar">LET'S GO</button>
 					</form>
 				</div>
 			</div>

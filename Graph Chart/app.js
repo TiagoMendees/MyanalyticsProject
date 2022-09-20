@@ -1,7 +1,7 @@
 var options = {
-    chart: { height: 320, type: "area", width: 750,},
+    chart: { height: 500, type: "area", width: 1200,},
     dataLabels: { enable:false },
-    series: [{ name: "Money", data: [0, 25, 60, 65, 90, 148, 223, 200, 211, 240, 240, 266] }],
+    series: [{ name: "Money", data: result }],
     fill: {
         type: "gradient",
         gradient: {

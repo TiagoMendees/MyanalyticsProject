@@ -1,13 +1,14 @@
 #chart {
     max-width: 650px;
     margin: 35px auto;
-    margin-top: -20;
+    margin-top: 10;
+    padding-right: -40;
 }
 
 html,
 body {
 
-    background-color: #2D132C;
+    background-color: #16171B;
 
 }
 
@@ -28,7 +29,7 @@ body {
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #801336;
+    background-color: #1B1B1F;
     overflow-x: hidden;
   }
   
@@ -45,7 +46,7 @@ body {
   
   /* Change color on hover */
   .sidenav a:hover {
-    background-color: #C72C41;
+    background-color: #313236;
     color: black;
   }
   
@@ -71,7 +72,7 @@ body {
 
 #link1 {
 
-    padding-top: 30;
+    margin-top: 60;
 
 }
 
@@ -81,7 +82,7 @@ img{
 .login {
     height: 1000px;
     width: 100%;
-    background: #f2eee3;
+    background: #16171B;
     position: relative;
 }
 .login_box {
@@ -101,6 +102,7 @@ img{
   width: 41%;
   height: 100%;
   padding: 25px 25px;
+  
 
 }
 .login_box .right{
@@ -198,9 +200,11 @@ img{
     margin-top: -3px;
 }
 
-.ButtonSumitA {
-
+.contact a {
+  color: #EEFFFF;
+  padding: 16px;
+  padding-left: 70;
   text-decoration: none;
-  color: white;
-
+  display: block;
+  
 }
