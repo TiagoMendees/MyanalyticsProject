@@ -208,3 +208,13 @@ img{
   display: block;
   
 }
+
+#lgErro {
+
+  color: green;
+  font: bold;
+  text-align: center;
+  font-weight: bold;
+  visibility: visible;
+
+}

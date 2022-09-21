@@ -11,15 +11,14 @@
 <body>
 	<section class="login">
 
+	<script>
+		document.getElementById("#lgErro").style.color = "red";
+		console.log("test");
+	</script>
+
 	<?php
 
 		include "connection.inc";
-
-		if($con) {
-			echo "<p>true</p>";
-		} else {
-			echo "<p>false</p>";
-		}
 
 		if(isset($_POST["f_logar"])) {
 			$user=$_POST["f_user"];
@@ -30,13 +29,8 @@
 			$ret=mysqli_fetch_array($res);
 
 			if($ret == 0) {
-				echo "<p id='lgErro'>Login Incorreto</p>";
+				
 			} else {
-				if($ret) {
-					echo "<p>true</p>";
-				} else {
-					echo "<p>false</p>";
-				}
 
 				echo "DADOS: ".$ret['valores']."<br>";
 				
@@ -54,14 +48,14 @@
 				session_start();
 				$_SESSION['numlogin']=$num;
 				$_SESSION['username']=$user;
-				$_SESSION['dados']=$ret;
+				$_SESSION['dados']=$ret['valores'];
 				header("Location:project.php?num=$num");
 				
 			}
 			mysqli_close($con);
 		}
 	?>
-
+	
 		<div class="login_box">
 			<div class="left">
 				<div class="contact">
@@ -69,6 +63,12 @@
 						<h3>SIGN IN</h3>
 						<input type="text" name="f_user" placeholder="PROJECT NAME">
 						<input type="password" name="f_senha" placeholder="PASSWORD">
+						<p id='lgErro'>
+						Login Error<br>
+						Wrong Project Name<br>
+						or Wrong Password<br>
+						Try Again
+						</p>
 						<button class="submit" type="submit" name="f_logar">LET'S GO</button>
 					</form>
 				</div>

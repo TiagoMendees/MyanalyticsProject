@@ -4,7 +4,7 @@
     if(isset($_SESSION["numlogin"])) {
         $n1=$_GET["num"];
         $n2=$_SESSION["numlogin"];
-        $ret=_SESSION["dados"];
+        $Dados=$_SESSION["dados"];
         if($n1!=$n2) {
             echo "<p>You do not have access to this page! Incomplete Login.</p>";
             exit;
@@ -13,6 +13,9 @@
         echo "<p>You do not have access to this page! Incomplete Login.</p>";
         exit;  
     }
+
+    echo "________________________________________DADOS: ".$Dados."<br>";
+
 
 ?>
 
@@ -45,12 +48,19 @@
         </script>
         <script>
 
-            var info = "<?php print $ret['valores']; ?>";
+            var info = "<?php echo"$Dados"?>";
+            var datavar = [12,0,99,77,89,100,200,300,400,320,12,15];
+            var tittle = "titulo"
+
+            document.write(info);
 
             var options = {
             chart: { height: 500, type: "area", width: 1200,},
-            dataLabels: { enable:false },
-            series: [{ name: "Money", data: info }],
+            dataLabels: { enable:true },
+            series: [{
+                name: tittle,
+                data: datavar
+            }],
             fill: {
                 type: "gradient",
                 gradient: {
@@ -81,6 +91,7 @@
 
             var chart = new ApexCharts(document.querySelector("#chart"),options);
             chart.render();
+
         </script>
     </body>
 
